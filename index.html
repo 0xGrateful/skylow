@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NB6SD4Z6');</script>
+<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skylow — авиабилеты онлайн</title>
@@ -411,517 +418,68 @@ body {
         .search-btn:hover { background: #5b4acb; transform: translateY(-2px); box-shadow: 0 22px 28px -12px #6C5CE7; }
 
         /* Модальные окна */
-/* Модальные окна */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(26, 26, 46, 0.5);
-    backdrop-filter: blur(4px);
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
-.modal.show { display: flex; }
-.modal-content {
-    background: white;
-    border-radius: 32px;
-    padding: 32px;
-    max-width: 580px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 30px 60px rgba(108, 92, 231, 0.3);
-    border: 1px solid #A28BFF;
-}
-/* Шапка билета */
-.ticket-header {
-    background: linear-gradient(135deg, #6C5CE7 0%, #8B74FF 50%, #A28BFF 100%);
-    padding: 28px 32px;
-    position: relative;
-    overflow: hidden;
-}
-
-.ticket-header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-.ticket-header h3 {
-    font-size: 32px;
-    font-weight: 800;
-    margin: 0;
-    color: white;
-    letter-spacing: -0.5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 1;
-}
-
-.ticket-number {
-    background: rgba(255, 255, 255, 0.25) !important;
-    backdrop-filter: blur(10px);
-    padding: 10px 24px !important;
-    border-radius: 50px !important;
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: white !important;
-    border: 1px solid rgba(255,255,255,0.3);
-    position: relative;
-    z-index: 1;
-    font-family: monospace;
-}
-
-/* Основная информация о рейсе */
-.flight-info {
-    padding: 32px;
-    background: white;
-    margin: 20px;
-    border-radius: 24px;
-    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.08);
-}
-
-.city-block {
-    text-align: center;
-    flex: 1;
-}
-
-.city-code {
-    font-size: 42px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #6C5CE7, #A28BFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-}
-
-.city-name {
-    font-size: 14px;
-    color: #6C5CE7;
-    font-weight: 500;
-    background: #F0E9FF;
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-}
-
-.flight-path {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 20px;
-}
-
-.flight-path i {
-    font-size: 28px;
-    color: #A28BFF;
-    animation: fly 2s ease-in-out infinite;
-}
-
-@keyframes fly {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
-}
-
-.flight-path span {
-    font-size: 24px;
-    color: #A28BFF;
-    font-weight: 300;
-}
-
-/* Блок с датами */
-.dates-block {
-    background: linear-gradient(135deg, #F8F4FF 0%, #FFFFFF 100%);
-    padding: 20px;
-    border-radius: 20px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.date-item {
-    flex: 1;
-    text-align: center;
-    padding: 12px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.date-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #A28BFF;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-
-.date-value {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1A1A2E;
-    font-family: monospace;
-}
-
-/* Информация о пассажирах */
-.passenger-list {
-    padding: 0 32px 32px 32px;
-}
-
-.passenger-list h4 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #1A1A2E;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-left: 4px solid #6C5CE7;
-    padding-left: 16px;
-}
-
-.passenger-list h4::before {
-    content: '👥';
-    font-size: 24px;
-}
-
-.passenger-grid {
-    background: #F8F4FF;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.passenger-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px dashed #D9CDFF;
-}
-
-.passenger-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.passenger-type {
-    color: #6C5CE7;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.passenger-count {
-    color: #4A4A68;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.passenger-price {
-    color: #1A1A2E;
-    font-weight: 700;
-    font-size: 16px;
-}
-
-/* Итоговая цена */
-.total-price {
-    background: linear-gradient(135deg, #6C5CE7 0%, #8B74FF 100%);
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.total-price span:first-child {
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-    opacity: 0.9;
-}
-
-.total-price span:last-child {
-    color: white;
-    font-size: 32px;
-    font-weight: 800;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-#finalTotalPrice {
-    color: #FFFFFF !important;
-}
-
-/* Дополнительная информация */
-.ticket-footer {
-    background: #F0E9FF;
-    padding: 20px 32px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    border-top: 1px solid #E9E2FF;
-    margin-top: 10px;
-}
-
-.ticket-footer-item {
-    flex: 1;
-    text-align: center;
-}
-
-.ticket-footer-item span:first-child {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #A28BFF;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-}
-
-.ticket-footer-item span:last-child {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1A1A2E;
-    background: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    display: inline-block;
-}
-
-/* Анимация появления */
-@keyframes ticketSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modal#finalTicketModal.show .modal-content {
-    animation: ticketSlideIn 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
-}
-
-/* Адаптивность */
-@media (max-width: 600px) {
-    .flight-info {
-        flex-direction: column;
-        gap: 20px;
-        margin: 16px;
-        padding: 24px;
-    }
-    
-    .flight-path {
-        transform: rotate(90deg);
-        margin: 10px 0;
-    }
-    
-    .dates-block {
-        flex-direction: column;
-    }
-    
-    .passenger-list {
-        padding: 0 20px 20px 20px;
-    }
-    
-    .ticket-footer {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .ticket-footer-item {
-        text-align: left;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .total-price span:last-child {
-        font-size: 24px;
-    }
-}
-.modal-content h2 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    color: #6C5CE7;
-}
-.modal-content input, .modal-content select {
-    width: 100%;
-    padding: 16px 20px;
-    border: 1.5px solid #A28BFF;
-    border-radius: 40px;
-    font-size: 16px;
-    margin-bottom: 16px;
-    background: #F8F4FF;
-    outline: none;
-}
-.modal-content button {
-    background: #6C5CE7;
-    color: white;
-    border: none;
-    border-radius: 40px;
-    padding: 16px;
-    font-size: 18px;
-    font-weight: 600;
-    width: 100%;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-bottom: 16px;
-}
-.modal-content button:hover { background: #5b4acb; }
-.modal-content button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-
-/* Стили для крестика */
-.close-modal {
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #A28BFF;
-    transition: 0.2s;
-}
-.close-modal:hover {
-    color: #6C5CE7;
-}
-
-/* Блок благодарности */
-.thankyou-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(26, 26, 46, 0.7);
-    backdrop-filter: blur(8px);
-    align-items: center;
-    justify-content: center;
-    z-index: 2100;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.thankyou-modal.show {
-    display: flex;
-}
-
-.thankyou-content {
-    background: white;
-    border-radius: 32px;
-    padding: 48px 32px;
-    max-width: 450px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 30px 60px rgba(108, 92, 231, 0.3);
-    border: 2px solid #6C5CE7;
-    animation: slideUp 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
-    position: relative;
-}
-
-.close-thankyou {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #A28BFF;
-    transition: 0.2s;
-}
-
-.close-thankyou:hover {
-    color: #6C5CE7;
-    transform: rotate(90deg);
-}
-
-.thankyou-icon {
-    font-size: 64px;
-    margin-bottom: 20px;
-    animation: bounce 0.5s ease-out;
-}
-
-.thankyou-content h3 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #6C5CE7;
-    margin-bottom: 12px;
-}
-
-.thankyou-content p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 32px;
-}
-
-.thankyou-btn {
-    background: #6C5CE7;
-    color: white;
-    border: none;
-    border-radius: 40px;
-    padding: 14px 32px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.thankyou-btn:hover {
-    background: #5b4acb;
-    transform: scale(1.02);
-}
-
-/* Анимации */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes bounce {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 26, 46, 0.5);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(108, 92, 231, 0.3);
+            border: 1px solid #A28BFF;
+        }
+        .modal-content h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #6C5CE7;
+        }
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1.5px solid #A28BFF;
+            border-radius: 40px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            background: #F8F4FF;
+            outline: none;
+        }
+        .modal-content button {
+            background: #6C5CE7;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 16px;
+        }
+        .modal-content button:hover { background: #5b4acb; }
+        .modal-content button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .close-modal {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #4A4A68;
+        }
         .error-message {
             color: #ff4444;
             font-size: 14px;
@@ -1731,44 +1289,14 @@ body {
             object-fit: contain;
             margin-bottom: 15px;
         }
-		/* Модальное окно оплаты */
-.payment-modal-content {
-    max-width: 500px !important;
-    padding: 32px !important;
-}
-
-/* Стили для полей ввода */
-#paymentForm input {
-    transition: all 0.2s;
-}
-
-#paymentForm input:focus {
-    outline: none;
-    border-color: #6C5CE7;
-    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
-}
-
-/* Модальное окно успеха */
-.success-modal-content {
-    max-width: 450px !important;
-    text-align: center;
-}
-
-/* Анимация для успешной оплаты */
-@keyframes successBounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-.success-modal-content .fa-check-circle {
-    animation: successBounce 0.5s ease-out;
-}
     </style>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="toast" id="toast"></div>
 <!-- Опросник -->
-<div id="surveyModal" class="modal">
+<div id="surveyModal" class="modal show">
     <div class="modal-content">
         <span class="close-modal" id="closeSurvey">&times;</span>
         <h2>Опрос для пользователей</h2>
@@ -1791,13 +1319,13 @@ body {
 
         <!-- Вопрос 4: Уровень дохода -->
         <label>4. Уровень дохода</label>
-        <select id="q4">
+        <select id="q1">
             <option value="">Выберите</option>
-            <option value="500">0-500$</option>
-            <option value="1000">501-1000$</option>
-            <option value="1500">1001-1500$</option>
-            <option value="2000">1501-2000$</option>
-            <option value="2500">2001$+</option>
+            <option value="500">0-499$</option>
+            <option value="1000">500-999$</option>
+            <option value="1500">999-1499$</option>
+            <option value="2000">1500-1999$</option>
+            <option value="2500">2000$+</option>
         </select>
 
         <!-- Вопрос 5: Основная причина обращения -->
@@ -1805,17 +1333,6 @@ body {
         <input type="text" id="q5" placeholder="Опишите причину">
 
         <button id="submitSurvey">Отправить</button>
-    </div>
-</div>
-
-<!-- Блок благодарности -->
-<div id="thankYouModal" class="thankyou-modal">
-    <div class="thankyou-content">
-        <span class="close-thankyou" id="closeThankYou">&times;</span>
-        <div class="thankyou-icon">🎉</div>
-        <h3>Спасибо за участие в опросе!</h3>
-        <p>Ваши ответы помогут нам стать лучше</p>
-        <button id="thankYouCloseBtn" class="thankyou-btn">Закрыть</button>
     </div>
 </div>
 
@@ -1857,9 +1374,10 @@ body {
     <div class="modal" id="advertiseModal">
         <div class="modal-content">
             <span class="close-modal" id="closeAdvertiseModal">&times;</span>
-            <h2 id="advertiseTitle">Свяжитесь с нами для размещения рекламы:</h2>
+            <h2 id="advertiseTitle">Разместить рекламу</h2>
             <div class="advertise-content">
-                <input type="text" placeholder="Введите ваше предложение" id="advertiseRequest">
+                <p id="advertiseText">Свяжитесь с нами для размещения рекламы:</p>
+                <textarea rows="4" placeholder="Напишите ваше предложение..."></textarea>
                 <button id="sendAdvertise">Отправить</button>
             </div>
         </div>
@@ -1988,11 +1506,11 @@ body {
                     <!-- Даты -->
                     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                         <div style="flex: 1;">
-                            <label style="font-size: 14px; color: #4A4A68;"><span id="departureDateLabel">Туда</span></label>
+                            <label style="font-size: 12px; color: #4A4A68;"><span id="departureDateLabel">Туда</span></label>
                             <input type="text" id="bookingDepartDate" class="search-modal-input" placeholder="Выберите дату" readonly style="margin-bottom: 0;">
                         </div>
                         <div style="flex: 1;" id="bookingReturnWrapper">
-                            <label style="font-size: 14px; color: #4A4A68;"><span id="returnDateLabel">Обратно</span></label>
+                            <label style="font-size: 12px; color: #4A4A68;"><span id="returnDateLabel">Обратно</span></label>
                             <input type="text" id="bookingReturnDate" class="search-modal-input" placeholder="Выберите дату" readonly style="margin-bottom: 0;">
                         </div>
                     </div>
@@ -2054,150 +1572,49 @@ body {
         </div>
     </div>
 
-<!-- Модальное окно оплаты -->
-<div class="modal" id="paymentModal">
-    <div class="modal-content payment-modal-content">
-        <span class="close-modal" id="closePaymentModal">&times;</span>
-        <h2 style="color: #6C5CE7; margin-bottom: 24px;">💳 Оплата билетов</h2>
-        
-        <div id="paymentForm">
-            <!-- Email -->
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; color: #4A4A68; font-weight: 500;">📧 Электронная почта</label>
-                <input type="email" id="paymentEmail" placeholder="example@mail.com" 
-                       style="width: 100%; padding: 14px 18px; border: 1.5px solid #A28BFF; border-radius: 16px; font-size: 16px;">
-            </div>
-            
-            <!-- Номер карты -->
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; color: #4A4A68; font-weight: 500;">💳 Номер карты</label>
-                <input type="text" id="paymentCardNumber" maxlength="19" placeholder="0000 0000 0000 0000" 
-                       style="width: 100%; padding: 14px 18px; border: 1.5px solid #A28BFF; border-radius: 16px; font-size: 16px;">
-            </div>
-            
-            <!-- Срок действия и CVV -->
-            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
-                <div style="flex: 1;">
-                    <label style="display: block; margin-bottom: 8px; color: #4A4A68; font-weight: 500;">📅 Срок действия</label>
-                    <input type="text" id="paymentExpiry" maxlength="5" placeholder="MM/YY" 
-                           style="width: 100%; padding: 14px 18px; border: 1.5px solid #A28BFF; border-radius: 16px; font-size: 16px;">
+    <!-- Модальное окно итогового билета -->
+    <div class="modal" id="finalTicketModal">
+        <div class="modal-content ticket-modal-content">
+            <span class="close-modal" id="closeFinalTicketModal">&times;</span>
+            <div id="finalTicketContent">
+                <div class="ticket-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h3 style="color:#6C5CE7;">Skylow</h3>
+                    <div class="ticket-number" id="finalTicketNumber" style="background:#F8F4FF; padding:8px 18px; border-radius:40px;">SKY-1234</div>
                 </div>
-                <div style="flex: 1;">
-                    <label style="display: block; margin-bottom: 8px; color: #4A4A68; font-weight: 500;">🔒 CVV/CVC</label>
-                    <input type="password" id="paymentCvv" maxlength="3" placeholder="123" 
-                           style="width: 100%; padding: 14px 18px; border: 1.5px solid #A28BFF; border-radius: 16px; font-size: 16px;">
+                <div class="ticket-details">
+                    <div class="flight-info">
+                        <div class="city-block">
+                            <div class="city-code" id="finalFromCode">MSQ</div>
+                            <div class="city-name" id="finalFromCity">Минск</div>
+                        </div>
+                        <div class="flight-path"><i class="fas fa-plane"></i><span>→</span></div>
+                        <div class="city-block">
+                            <div class="city-code" id="finalToCode">IST</div>
+                            <div class="city-name" id="finalToCity">Стамбул</div>
+                        </div>
+                        <div style="margin-left:15px;">
+                            <div class="date-label"><span id="ticketDepartLabel">Туда</span></div>
+                            <div class="date-value" id="finalDepDate">12.05.2026</div>
+                            <div class="date-label" style="margin-top:8px;"><span id="ticketReturnLabel">Обратно</span></div>
+                            <div class="date-value" id="finalRetDate">26.05.2026</div>
+                        </div>
+                    </div>
+                    <div class="passenger-list">
+                        <h4 style="color:#6C5CE7; margin-bottom:12px;"><span id="passengersListLabel">Пассажиры</span></h4>
+                        <div id="finalPassengers"></div>
+                        <div class="total-price">
+                            <span><span id="totalLabel">Итого ($)</span>:</span>
+                            <span id="finalTotalPrice">0 $</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Имя держателя -->
-            <div style="margin-bottom: 25px;">
-                <label style="display: block; margin-bottom: 8px; color: #4A4A68; font-weight: 500;">👤 Имя держателя карты</label>
-                <input type="text" id="paymentCardName" placeholder="IVAN IVANOV" 
-                       style="width: 100%; padding: 14px 18px; border: 1.5px solid #A28BFF; border-radius: 16px; font-size: 16px;">
-            </div>
-            
-            <!-- Сумма к оплате -->
-            <div style="background: #F8F4FF; padding: 15px; border-radius: 16px; margin-bottom: 25px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 600; color: #4A4A68;">Сумма к оплате:</span>
-                    <span id="paymentAmount" style="font-size: 24px; font-weight: 800; color: #6C5CE7;">0 $</span>
-                </div>
-            </div>
-            
-            <!-- Кнопки -->
-            <div style="display: flex; gap: 15px;">
-                <button id="backToTicketBtn" style="flex: 1; background: #E9E2FF; color: #6C5CE7; border: none; border-radius: 40px; padding: 14px; font-weight: 600; cursor: pointer; transition: 0.2s;">
-                    ← Назад
-                </button>
-                <button id="confirmPaymentBtn" style="flex: 2; background: #6C5CE7; color: white; border: none; border-radius: 40px; padding: 14px; font-weight: 600; cursor: pointer; transition: 0.2s;">
-                    Подтвердить оплату ✓
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Модальное окно успешной оплаты -->
-<div class="modal" id="successModal">
-    <div class="modal-content success-modal-content">
-        <div style="text-align: center; padding: 20px;">
-            <div style="font-size: 80px; margin-bottom: 20px;">🎉</div>
-            <h2 style="color: #6C5CE7; margin-bottom: 15px;">Билеты успешно оплачены!</h2>
-            <p style="color: #4A4A68; margin-bottom: 25px; font-size: 16px;">
-                Электронные билеты отправлены на вашу почту<br>
-                <strong id="successEmail"></strong>
-            </p>
-            <div style="background: #F8F4FF; padding: 15px; border-radius: 16px; margin-bottom: 25px;">
-                <p style="margin: 0; color: #6C5CE7;">Номер бронирования: <strong id="bookingRef"></strong></p>
-            </div>
-            <button id="closeSuccessBtn" style="background: #6C5CE7; color: white; border: none; border-radius: 40px; padding: 14px 40px; font-weight: 600; cursor: pointer;">
-                Закрыть
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Модальное окно итогового билета -->
-<div class="modal" id="finalTicketModal">
-    <div class="modal-content ticket-modal-content">
-        <span class="close-modal" id="closeFinalTicketModal">&times;</span>
-        <div id="finalTicketContent">
-            <div class="ticket-header">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3>Skylow</h3>
-                    <div class="ticket-number" id="finalTicketNumber">SKY-1234</div>
-                </div>
-            </div>
-            
-            <div class="flight-info" style="display: flex; align-items: center; justify-content: space-between;">
-                <div class="city-block">
-                    <div class="city-code" id="finalFromCode">MSQ</div>
-                    <div class="city-name" id="finalFromCity">Минск</div>
-                </div>
-                <div class="flight-path">
-                    <i class="fas fa-plane"></i>
-                    <span>→</span>
-                </div>
-                <div class="city-block">
-                    <div class="city-code" id="finalToCode">IST</div>
-                    <div class="city-name" id="finalToCity">Стамбул</div>
-                </div>
-            </div>
-            
-            <div class="dates-block">
-                <div class="date-item">
-                    <div class="date-label">Туда</div>
-                    <div class="date-value" id="finalDepDate">12.05.2026</div>
-                </div>
-                <div class="date-item">
-                    <div class="date-label">Обратно</div>
-                    <div class="date-value" id="finalRetDate">26.05.2026</div>
-                </div>
-            </div>
-            
-            <div class="passenger-list">
-                <h4>Пассажиры</h4>
-                <div class="passenger-grid" id="finalPassengers"></div>
-                
-                <div class="total-price">
-                    <span>Итого</span>
-                    <span id="finalTotalPrice">0 $</span>
-                </div>
-            </div>
-            
-            <div class="ticket-footer">
-                <div class="ticket-footer-item">
-                    <span>Класс</span>
-                    <span id="finalClass">Эконом</span>
-                </div>
-                <div class="ticket-footer-item">
-                    <span>Тип</span>
-                    <span id="finalFlightType">Туда-обратно</span>
+                <div style="display:flex; justify-content:space-between; margin-top:15px; color:#4A4A68;">
+                    <span><span id="ticketClassLabel">Класс</span>: <span id="finalClass">Эконом</span></span>
+                    <span><span id="ticketTypeLabel">Тип</span>: <span id="finalFlightType">Туда-обратно</span></span>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Модальное окно для информационных вкладок -->
     <div class="modal" id="infoTabModal">
@@ -2371,36 +1788,26 @@ body {
             <div class="hero-sub" id="heroQuote">«Кто хочет увидеть самое большое, тому нужна способность улететь далеко» — Антуан де Сент-Экзюпери</div>
         </div>
 
-<!-- Форма поиска билетов -->
-<div class="search-form">
-    <!-- Выбор типа полета -->
-    <div class="flight-type-selector">
-        <label class="flight-type-option">
-            <input type="radio" name="flightType" value="roundtrip" checked> 
-            <span>Туда-обратно</span>
-        </label>
-        <label class="flight-type-option">
-            <input type="radio" name="flightType" value="oneway"> 
-            <span>В одну сторону</span>
-        </label>
-    </div>
-
-    <!-- Строка с городами -->
-    <div class="form-row">
-        <div class="form-group">
-            <label>Откуда</label>
-            <div class="input-wrapper">
-                <i class="fas fa-plane-departure"></i>
-                <select id="departureSelect">
-                    <option value="">Выберите город</option>
-                    <option value="Минск">Минск (MSQ)</option>
-                    <option value="Брест">Брест (BQT)</option>
-                    <option value="Витебск">Витебск (VTB)</option>
-                    <option value="Гомель">Гомель (GME)</option>
-                    <option value="Могилев">Могилев (MVQ)</option>
-                </select>
+        <!-- Форма поиска билетов -->
+        <div class="search-form">
+            <!-- Выбор типа полета -->
+            <div class="flight-type-selector">
+                <label class="flight-type-option">
+                    <input type="radio" name="flightType" value="roundtrip" checked> <span id="roundtripMainLabel">Туда-обратно</span>
+                </label>
+                <label class="flight-type-option">
+                    <input type="radio" name="flightType" value="oneway"> <span id="onewayMainLabel">В одну сторону</span>
+                </label>
             </div>
-        </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label id="fromLabel">Откуда</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-plane-departure"></i>
+                        <input type="text" id="fromCity" value="Минск (MSQ)" readonly>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label id="toLabel">Куда</label>
                     <div class="input-wrapper">
@@ -2486,19 +1893,16 @@ body {
                 <h4 id="supportTitle">Поддержка</h4>
                 <a class="footer-link" data-page="help-center"><span class="menu-text" data-translate="help-center">Центр помощи</span></a>
                 <a class="footer-link" data-page="baggage-rules"><span class="menu-text" data-translate="baggage-rules">Правила багажа</span></a>
-				<a class="footer-link" data-page="customer reviews"><span class="menu-text" data-translate="customer reviews">Отзывы клиентов</span></a>
             </div>
             <div class="footer-col">
                 <h4 id="partnersTitle">Партнёрам</h4>
                 <a class="footer-link" data-page="integrations"><span class="menu-text" data-translate="integrations">Интеграции</span></a>
                 <a class="footer-link" data-page="api"><span class="menu-text" data-translate="api">API</span></a>
             </div>
-            <div class="footer-col">	
+            <div class="footer-col">
                 <h4 id="contactTitle">Связь</h4>
                 <a><i class="far fa-envelope"></i> skylow@gmail.com</a>
                 <a><i class="fas fa-phone-alt"></i> +375 17 123-45-67</a>
-                <a><i class="fas fa-user"></i> Директор компании:</a>
-                <a></i>  Ковалевская Виолетта Сергеевна</a>
                 <div class="payment-icons">
                     <i class="fab fa-cc-mastercard payment-icon"></i>
                     <i class="fab fa-cc-visa payment-icon"></i>
@@ -2583,129 +1987,43 @@ body {
             let isLoggedIn = false;
             let currentLang = 'ru';
 			
-const surveyModal = document.getElementById('surveyModal');
-const closeSurvey = document.getElementById('closeSurvey');
-const submitSurvey = document.getElementById('submitSurvey');
-const thankYouModal = document.getElementById('thankYouModal');
-const closeThankYou = document.getElementById('closeThankYou');
-const thankYouCloseBtn = document.getElementById('thankYouCloseBtn');
-			
-			// Функция для сбора данных опроса
-function collectSurveyData() {
-    const gender = document.getElementById('q1')?.value;
-    const age = document.getElementById('q2')?.value;
-    const occupation = document.getElementById('q3')?.value;
-    const income = document.getElementById('q4')?.value;
-    const reason = document.getElementById('q5')?.value;
-    
-    return {
-        gender,
-        age,
-        occupation,
-        income,
-        reason,
-        timestamp: new Date().toISOString()
-    };
-}
+			const surveyModal = document.getElementById('surveyModal');
+            const closeSurvey = document.getElementById('closeSurvey');
+            const submitSurvey = document.getElementById('submitSurvey');
 
-// Функция для отправки данных (можно заменить на реальный API)
-function submitSurveyData(data) {
-    console.log('Данные опроса:', data);
-    // Здесь можно добавить отправку на сервер
-    // fetch('/api/survey', { method: 'POST', body: JSON.stringify(data) })
-    
-    // Сохраняем в localStorage для демонстрации
-    localStorage.setItem('surveyData', JSON.stringify(data));
-}
+            // Данные для флагов
+            const flagImages = {
+                'Москва': 'https://flagcdn.com/w320/ru.png',
+                'Стамбул': 'https://flagcdn.com/w320/tr.png',
+                'Дубай': 'https://flagcdn.com/w320/ae.png',
+                'Анталия': 'https://flagcdn.com/w320/tr.png',
+                'Милан': 'https://flagcdn.com/w320/it.png',
+                'Тбилиси': 'https://flagcdn.com/w320/ge.png',
+                'Рим': 'https://flagcdn.com/w320/it.png',
+                'Санкт-Петербург': 'https://flagcdn.com/w320/ru.png',
+                'Калининград': 'https://flagcdn.com/w320/ru.png'
+            };
 			
-// Функция показа благодарности
-function showThankYou() {
-    surveyModal.classList.remove('show');
-    thankYouModal.classList.add('show');
-    
-    // Автоматическое закрытие через 5 секунд
-    setTimeout(() => {
-        if (thankYouModal.classList.contains('show')) {
-            thankYouModal.classList.remove('show');
-        }
-    }, 5000);
-}
+			// Закрытие модалки по крестику
+            closeSurvey.addEventListener('click', () => {
+            surveyModal.classList.remove('show');
+            });
 
-// Закрытие модалки по крестику
-if (closeSurvey) {
-    closeSurvey.addEventListener('click', () => {
+           // Закрытие по кнопке отправки
+           submitSurvey.addEventListener('click', () => {
+
         surveyModal.classList.remove('show');
     });
-}
 
-// Обработка отправки опроса
-if (submitSurvey) {
-    submitSurvey.addEventListener('click', () => {
-        // Собираем данные
-        const surveyData = collectSurveyData();
-        
-        // Проверяем, заполнены ли обязательные поля
-        if (!surveyData.gender || !surveyData.age || !surveyData.occupation || 
-            !surveyData.income || !surveyData.reason) {
-            alert('Пожалуйста, заполните все поля!');
-            return;
-        }
-        
-        // Отправляем данные
-        submitSurveyData(surveyData);
-        
-        // Показываем благодарность
-        showThankYou();
-    });
-}
-
-// Закрытие благодарности по крестику
-if (closeThankYou) {
-    closeThankYou.addEventListener('click', () => {
-        thankYouModal.classList.remove('show');
-    });
-}
-
-// Закрытие благодарности по кнопке
-if (thankYouCloseBtn) {
-    thankYouCloseBtn.addEventListener('click', () => {
-        thankYouModal.classList.remove('show');
-    });
-}
-
-// Показ опроса только один раз за сессию
-window.addEventListener('load', () => {
-    if (!sessionStorage.getItem('surveyShown')) {
-        setTimeout(() => {
+    // Показ только один раз за сессию
+    window.addEventListener('load', () => {
+        if (!sessionStorage.getItem('surveyShown')) {
             surveyModal.classList.add('show');
-        }, 500);
-        sessionStorage.setItem('surveyShown', 'true');
-    }
-});
-
-// Закрытие при клике на фон
-if (surveyModal) {
-    surveyModal.addEventListener('click', (e) => {
-        if (e.target === surveyModal) {
+            sessionStorage.setItem('surveyShown', 'true');
+        } else {
             surveyModal.classList.remove('show');
         }
     });
-}
-
-if (thankYouModal) {
-    thankYouModal.addEventListener('click', (e) => {
-        if (e.target === thankYouModal) {
-            thankYouModal.classList.remove('show');
-        }
-    });
-}
-
-// Также можно закрыть модалку при клике вне её области
-surveyModal.addEventListener('click', (e) => {
-    if (e.target === surveyModal) {
-        surveyModal.classList.remove('show');
-    }
-});
 
             // Функция валидации телефона (формат: + и ровно 12 цифр)
             function validatePhone(phoneInput, errorElement, button, isRegister = false) {
@@ -3538,229 +2856,6 @@ surveyModal.addEventListener('click', (e) => {
             closeClass.addEventListener('click', () => classModal.classList.remove('show'));
             closeLogin.addEventListener('click', () => loginModal.classList.remove('show'));
 
-// Получаем элементы
-const paymentModal = document.getElementById('paymentModal');
-const successModal = document.getElementById('successModal');
-const closePaymentModal = document.getElementById('closePaymentModal');
-const backToTicketBtn = document.getElementById('backToTicketBtn');
-const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
-const closeSuccessBtn = document.getElementById('closeSuccessBtn');
-
-// Форматирование номера карты
-document.getElementById('paymentCardNumber')?.addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 16) value = value.slice(0, 16);
-    value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-    e.target.value = value;
-});
-
-// Форматирование срока действия
-document.getElementById('paymentExpiry')?.addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 4) value = value.slice(0, 4);
-    if (value.length >= 3) {
-        value = value.slice(0, 2) + '/' + value.slice(2);
-    }
-    e.target.value = value;
-});
-
-// Ограничение CVV
-document.getElementById('paymentCvv')?.addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 3) value = value.slice(0, 3);
-    e.target.value = value;
-});
-
-// Функция валидации формы оплаты
-function validatePaymentForm() {
-    const email = document.getElementById('paymentEmail').value.trim();
-    const cardNumber = document.getElementById('paymentCardNumber').value.replace(/\s/g, '');
-    const expiry = document.getElementById('paymentExpiry').value;
-    const cvv = document.getElementById('paymentCvv').value;
-    const cardName = document.getElementById('paymentCardName').value.trim();
-    
-    // Проверка email
-    const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-    if (!email) {
-        showToast('Введите email');
-        return false;
-    }
-    if (!emailRegex.test(email)) {
-        showToast('Введите корректный email');
-        return false;
-    }
-    
-    // Проверка номера карты
-    if (!cardNumber || cardNumber.length !== 16) {
-        showToast('Введите корректный номер карты (16 цифр)');
-        return false;
-    }
-    
-    // Проверка срока действия
-    if (!expiry || expiry.length !== 5) {
-        showToast('Введите срок действия карты (MM/YY)');
-        return false;
-    }
-    
-    const [month, year] = expiry.split('/');
-    const currentYear = new Date().getFullYear() % 100;
-    const currentMonth = new Date().getMonth() + 1;
-    
-    if (parseInt(month) < 1 || parseInt(month) > 12) {
-        showToast('Введите корректный месяц (01-12)');
-        return false;
-    }
-    
-    if (parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
-        showToast('Срок действия карты истек');
-        return false;
-    }
-    
-    // Проверка CVV
-    if (!cvv || cvv.length !== 3) {
-        showToast('Введите корректный CVV код (3 цифры)');
-        return false;
-    }
-    
-    // Проверка имени держателя
-    if (!cardName || cardName.length < 3) {
-        showToast('Введите имя держателя карты');
-        return false;
-    }
-    
-    return true;
-}
-
-// Добавляем кнопку "Оплатить" в итоговый билет
-function addPayButton() {
-    const totalPriceDiv = document.querySelector('.total-price');
-    if (totalPriceDiv && !document.getElementById('payNowBtn')) {
-        const payButton = document.createElement('button');
-        payButton.id = 'payNowBtn';
-        payButton.innerHTML = '💳 Оплатить билеты';
-        payButton.style.cssText = `
-            width: 100%;
-            margin-top: 20px;
-            background: linear-gradient(135deg, #6C5CE7, #8B74FF);
-            color: white;
-            border: none;
-            border-radius: 40px;
-            padding: 16px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
-        `;
-        
-        payButton.onmouseover = () => {
-            payButton.style.transform = 'translateY(-2px)';
-            payButton.style.boxShadow = '0 6px 20px rgba(108, 92, 231, 0.4)';
-        };
-        
-        payButton.onmouseout = () => {
-            payButton.style.transform = 'translateY(0)';
-            payButton.style.boxShadow = '0 4px 15px rgba(108, 92, 231, 0.3)';
-        };
-        
-        totalPriceDiv.parentElement.appendChild(payButton);
-        
-        payButton.onclick = () => {
-    const totalAmount = document.getElementById('finalTotalPrice').textContent;
-    document.getElementById('paymentAmount').textContent = totalAmount;
-    
-    // Сначала закрываем окно билета
-    finalTicketModal.classList.remove('show');
-    
-    // Небольшая задержка перед открытием окна оплаты
-    setTimeout(() => {
-        paymentModal.classList.add('show');
-    }, 200);
-};
-    }
-}
-
-// Открытие модалки оплаты из билета
-document.getElementById('payNowBtn')?.addEventListener('click', () => {
-    const totalAmount = document.getElementById('finalTotalPrice').textContent;
-    document.getElementById('paymentAmount').textContent = totalAmount;
-    paymentModal.classList.add('show');
-});
-
-// Кнопка "Назад" - закрывает оплату
-backToTicketBtn?.addEventListener('click', () => {
-    paymentModal.classList.remove('show');
-});
-
-// Кнопка "Подтвердить оплату"
-confirmPaymentBtn?.addEventListener('click', () => {
-    if (validatePaymentForm()) {
-        const email = document.getElementById('paymentEmail').value;
-        const totalAmount = document.getElementById('paymentAmount').textContent;
-        const bookingNumber = document.getElementById('finalTicketNumber').textContent;
-        
-        // Сохраняем данные оплаты
-        const paymentData = {
-            email: email,
-            amount: totalAmount,
-            bookingNumber: bookingNumber,
-            timestamp: new Date().toISOString()
-        };
-        
-        console.log('Оплата прошла успешно:', paymentData);
-        
-        // Сохраняем в localStorage
-        localStorage.setItem('lastPayment', JSON.stringify(paymentData));
-        
-        // Закрываем окно оплаты
-        paymentModal.classList.remove('show');
-        
-        // Показываем окно успеха
-        document.getElementById('successEmail').textContent = email;
-        document.getElementById('bookingRef').textContent = bookingNumber;
-        successModal.classList.add('show');
-        
-        // Очищаем форму оплаты
-        document.getElementById('paymentEmail').value = '';
-        document.getElementById('paymentCardNumber').value = '';
-        document.getElementById('paymentExpiry').value = '';
-        document.getElementById('paymentCvv').value = '';
-        document.getElementById('paymentCardName').value = '';
-    }
-});
-
-// Закрытие окна успеха
-closeSuccessBtn?.addEventListener('click', () => {
-    successModal.classList.remove('show');
-    finalTicketModal.classList.remove('show');
-});
-
-// Закрытие по крестику
-closePaymentModal?.addEventListener('click', () => {
-    paymentModal.classList.remove('show');
-});
-
-// Закрытие по клику вне модалки
-paymentModal?.addEventListener('click', (e) => {
-    if (e.target === paymentModal) {
-        paymentModal.classList.remove('show');
-    }
-});
-
-successModal?.addEventListener('click', (e) => {
-    if (e.target === successModal) {
-        successModal.classList.remove('show');
-    }
-});
-
-// Вызываем добавление кнопки после заполнения билета
-// Добавьте эту строку в конец функции формирования билета
-window.addPayButton = addPayButton;
-
-// Обновите функцию showFinalTicket или ваш код формирования билета
-// В конце функции добавьте:
-// addPayButton();
-
             // Календари (для главной формы)
             const departInput = document.getElementById('departureDate');
             const returnInput = document.getElementById('returnDate');
@@ -3855,8 +2950,6 @@ window.addPayButton = addPayButton;
                 document.getElementById('finalTicketNumber').textContent = 'SKY-' + ref;
 
                 finalTicketModal.classList.add('show');
-				
-				addPayButton();
             });
 
             // Функция для открытия информационных вкладок
@@ -3872,17 +2965,14 @@ window.addPayButton = addPayButton;
                             <div class="info-section">
                                 <p class="info-text">Skylow — это современная онлайн-платформа для продажи авиабилетов в Республике Беларусь. Мы соединяем путешественников с лучшими авиакомпаниями, предлагая удобный сервис бронирования и широкий выбор направлений.</p>
                                 <div class="info-highlight">
-                                    <strong>Награды и сертификаты:</strong>
-                                    <p>1. Сертификат IATA (Международная ассоциация воздушного транспорта) — подтверждение надежности.</p>
-<p>2. Премия "Лучший онлайн-сервис 2022" от Туристического портала Беларуси.</p>
-<p>3. Сертификат соответствия стандартам безопасности платежей (PCI DSS).</p>
-<p>4. Награда "Выбор потребителей 2024" за высокий уровень сервиса.</p>
+                                    <strong>Наша миссия:</strong>
+                                    <p>Сделать путешествия доступными и комфортными для каждого жителя Беларуси.</p>
                                 </div>
                                 <div class="info-highlight">
                                     <strong>Наши преимущества:</strong>
-                                    <p>• Более 10 лет на рынке</p>
+                                    <p>• Более 50 направлений по всему миру</p>
                                     <p>• Круглосуточная поддержка клиентов</p>
-                                    <p>• Удобный интерфейс на 2 языках</p>
+                                    <p>• Удобный интерфейс на 6 языках</p>
                                     <p>• Мгновенное подтверждение бронирования</p>
                                 </div>
                                 <p class="info-text">Мы работаем с 2016 года и гордимся тем, что помогли более 500 000 путешественников осуществить свои мечты о путешествиях.</p>
@@ -4050,32 +3140,6 @@ window.addPayButton = addPayButton;
                                     <p>• Острые предметы (в ручной клади)</p>
                                 </div>
                                 <p class="info-text">Подробные правила можно уточнить у сотрудников аэропорта или по телефону горячей линии.</p>
-                            </div>
-                        `
-                    },
-					'customer reviews': {
-                        title: translations[currentLang]['customer_reviews'],
-                        content: `
-                            <h2>${translations[currentLang]['customer_reviews']}</h2>
-                            <div class="info-section">
-                                <div class="info-highlight">
-                                    <strong>Виктор, Минск</strong>
-                                    <p>Лучший сервис! Купил билет за 5 минут, поддержка помогла с выбором места</p>
-                                </div>
-                                <div class="info-highlight">
-                                    <strong>Ольга, Гомель</strong>
-                                    <p>Очень удобно с детьми. Автоматический расчет скидки, билеты пришли сразу. Спасибо!</p>
-                                </div>
-                                <div class="info-highlight">
-                                    <strong>Вадим, Минск</strong>
-<p>Я просто в полном восторге от Skylow! Раньше я мучился с поиском билетов, от-крывая кучу вкладок, но теперь всё решается за пару минут. Подкупает прежде всего удобство интерфейса — всё интуитивно понятно, даже без инструкции разо-брался моментально.
-Особенно хочу отметить скорость работы: приложение «летает», не тупит и не вы-летает в самый ответственный момент. Цены порадовали — нашёл билеты дешев-ле, чем на других известных агрегаторах, причем на ту же дату и рейс. Фильтры поиска очень гибкие, можно отсечь всё лишнее и выбрать идеальный вариант по времени и цене. Определенно, это мое любимое приложение для путешествий те-перь. Всем друзьям уже посоветовал! 
-</p>
-                                </div>
-                                <div class="info-highlight">
-                                    <strong>Дмитрий, Брест</strong>
-                                    <p>Пользуюсь уже 3 года. Ни разу не подвели. Цены честные, без скрытых комиссий</p>
-                                </div>
                             </div>
                         `
                     },
@@ -5296,7 +4360,7 @@ window.addPayButton = addPayButton;
                     popularLabel: 'Популярные:',
                     hotTicketsTitle: 'Горячие билеты',
                     allOffersLink: 'Все акции',
-                    copyrightText: '© 2026 Skylow — надёжный помощник в путешествиях.',
+                    copyrightText: '© 2026 Skylow — надёжный помощник в путешествиях. Прозрачно. Быстро. Честно.',
                     
                     flightSearchTitle: 'Поиск рейса',
                     travelPlanningTitle: 'Планирование поездки',
@@ -5349,7 +4413,6 @@ window.addPayButton = addPayButton;
                     advertise: 'Реклама на сайте',
                     'help-center': 'Центр помощи',
                     'baggage-rules': 'Правила багажа',
-					'customer_reviews': 'Отзывы клиентов',
                     integrations: 'Интеграции',
                     api: 'API',
                     
@@ -5722,13 +4785,13 @@ window.addPayButton = addPayButton;
                     selectClass: 'Выберите класс',
                     bookingConfirmed: 'Бронирование подтверждено!',
                     adults: 'Взрослые',
-                    children0_12: 'Дети (0-12)',
-                    children12_17: 'Дети (13-17)',
+                    children0_12: 'Дети 0-12',
+                    children12_17: 'Дети 12-17',
                     roundtrip: 'Туда-обратно',
                     oneway: 'В одну сторону',
                     adultsShort: 'взр.',
                     children0Short: 'д(0-12)',
-                    children12Short: 'д(13-17)',
+                    children12Short: 'д(12-17)',
                     notSelected: 'не выбрано',
                     passengersSaved: 'Пассажиры сохранены',
                     classSelected: 'Выбран',
@@ -5823,7 +4886,6 @@ window.addPayButton = addPayButton;
                     advertise: 'Advertise',
                     'help-center': 'Help Center',
                     'baggage-rules': 'Baggage Rules',
-					'customer_reviews': 'Customer reviews',
                     integrations: 'Integrations',
                     api: 'API',
                     
@@ -6196,8 +5258,8 @@ window.addPayButton = addPayButton;
                     selectClass: 'Select class',
                     bookingConfirmed: 'Booking confirmed!',
                     adults: 'Adults',
-                    children0_12: 'Children (0-12)',
-                    children12_17: 'Children (12-17)',
+                    children0_12: 'Children 0-12',
+                    children12_17: 'Children 12-17',
                     roundtrip: 'Round-trip',
                     oneway: 'One-way',
                     adultsShort: 'adults',
@@ -6228,7 +5290,7 @@ window.addPayButton = addPayButton;
             function changeLanguage(lang) {
                 currentLang = lang;
                 
-                const langNames = { ru: 'Русский', en: 'English'};
+                const langNames = { ru: 'Русский', en: 'English', de: 'Deutsch', fr: 'Français', es: 'Español', zh: '中文' };
                 document.getElementById('currentLang').innerHTML = `<i class="fas fa-globe"></i> ${langNames[lang]} <i class="fas fa-chevron-down"></i>`;
                 
                 document.getElementById('bookingMenuText').textContent = translations[lang].bookingMenuText;
@@ -6327,7 +5389,7 @@ window.addPayButton = addPayButton;
                     window.returnPicker.set('locale', lang === 'ru' ? 'ru' : 'en');
                 }
                 
-               // showToast(translations[lang].languageChanged || 'Language changed');
+                showToast(translations[lang].languageChanged || 'Language changed');
             }
 
             document.querySelectorAll('#langMenu a').forEach(item => {
